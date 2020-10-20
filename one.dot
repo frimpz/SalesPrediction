@@ -1,0 +1,33 @@
+digraph Tree {
+node [shape=box, style="filled, rounded", color="black", fontname=helvetica] ;
+edge [fontname=helvetica] ;
+0 [label="item_cnt_month_mean <= 2.458\nmse = 0.209\nsamples = 1132662\nvalue = 0.947", fillcolor="#e5813926"] ;
+1 [label="item_cnt_month_mean <= 1.449\nmse = 0.07\nsamples = 900285\nvalue = 0.823", fillcolor="#e5813913"] ;
+0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
+2 [label="item_cnt_month_mean <= 1.127\nmse = 0.021\nsamples = 579917\nvalue = 0.736", fillcolor="#e5813906"] ;
+1 -> 2 ;
+3 [label="mse = 0.004\nsamples = 355814\nvalue = 0.695", fillcolor="#e5813900"] ;
+2 -> 3 ;
+4 [label="mse = 0.041\nsamples = 224103\nvalue = 0.802", fillcolor="#e5813910"] ;
+2 -> 4 ;
+5 [label="item_cnt_month_mean <= 1.883\nmse = 0.121\nsamples = 320368\nvalue = 0.979", fillcolor="#e581392a"] ;
+1 -> 5 ;
+6 [label="mse = 0.09\nsamples = 183145\nvalue = 0.921", fillcolor="#e5813922"] ;
+5 -> 6 ;
+7 [label="mse = 0.153\nsamples = 137223\nvalue = 1.055", fillcolor="#e5813936"] ;
+5 -> 7 ;
+8 [label="item_cnt_month_mean <= 5.189\nmse = 0.454\nsamples = 232377\nvalue = 1.428", fillcolor="#e581396d"] ;
+0 -> 8 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+9 [label="item_cnt_month_mean <= 3.495\nmse = 0.316\nsamples = 168701\nvalue = 1.289", fillcolor="#e5813958"] ;
+8 -> 9 ;
+10 [label="mse = 0.255\nsamples = 107611\nvalue = 1.217", fillcolor="#e581394e"] ;
+9 -> 10 ;
+11 [label="mse = 0.398\nsamples = 61090\nvalue = 1.416", fillcolor="#e581396b"] ;
+9 -> 11 ;
+12 [label="item_cnt_month_mean <= 14.243\nmse = 0.632\nsamples = 63676\nvalue = 1.799", fillcolor="#e58139a4"] ;
+8 -> 12 ;
+13 [label="mse = 0.596\nsamples = 58423\nvalue = 1.744", fillcolor="#e581399c"] ;
+12 -> 13 ;
+14 [label="mse = 0.642\nsamples = 5253\nvalue = 2.407", fillcolor="#e58139ff"] ;
+12 -> 14 ;
+}

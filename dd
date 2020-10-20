@@ -1,0 +1,51 @@
+'''
+feature_count = 25
+items['item_name_length'] = items['item_name'].map(lambda x : len(x))
+items['item_name_word_count'] = items['item_name'].map(lambda x : len(x.split(' ')))
+tfidf = ft.text.TfidfVectorizer(max_features=feature_count)
+items_df_item_name_text_features = pd.DataFrame(tfidf.fit_transform(items['item_name']).toarray())
+print("Shape of items_df_item_name_text_features : {}".format(items_df_item_name_text_features.shape))
+cols = items_df_item_name_text_features.columns
+for idx in range(feature_count):
+    items['item_name_tfidf_' + str(idx)] = items_df_item_name_text_features[cols[idx]]
+print(items.head())
+
+feature_count = 25
+item_category['item_categories_name_length'] = item_category['item_category_name'].map(lambda x : len(x))
+item_category['item_categories_name_word_count'] = item_category['item_category_name'].map(lambda x : len(x.split(' ')))
+tfidf = ft.text.TfidfVectorizer(max_features=feature_count) #tfidf = term frequency inverse document frequency
+item_categories_df_item_category_name_text_features = pd.DataFrame(tfidf.fit_transform(item_category['item_category_name']).toarray())
+cols = item_categories_df_item_category_name_text_features.columns
+for idx in range(feature_count):
+    item_category['item_category_name_tfidf_' + str(idx)] = item_categories_df_item_category_name_text_features[cols[idx]]
+print(item_category.head())
+
+
+feature_count = 25
+shops['shop_name_length'] = shops['shop_name'].map(lambda x : len(x))
+shops['shop_name_word_count'] = shops['shop_name'].map(lambda x : len(x.split(' ')))
+tfidf = ft.text.TfidfVectorizer(max_features=feature_count)
+shops_df_shop_name_text_features = pd.DataFrame(tfidf.fit_transform(shops['shop_name']).toarray())
+cols = shops_df_shop_name_text_features.columns
+for idx in range(feature_count):
+    shops['shop_name_tfidf_' + str(idx)] = shops_df_shop_name_text_features[cols[idx]]
+print(shops.head())'''
+
+
+
+sales_train = sales_train.groupby([c for c in sales_train.columns if c not in ['item_cnt_day']], as_index=False)[
+    ['item_cnt_day']].sum()
+print(sales_train)
+sales_train = sales_train.rename(columns={'item_cnt_day': 'item_cnt_month'})
+shop_item_monthly_mean = sales_train[['shop_id', 'item_id', 'item_cnt_month']].groupby(['shop_id', 'item_id'], as_index=False)[
+    ['item_cnt_month']].mean()
+print(shop_item_monthly_mean)
+
+
+from sklearn.tree import export_graphviz
+#for tree in rf.estimators_:
+tree = rf.estimators_[1]
+export_graphviz(tree,out_file='tree.dot',feature_names=feature_list,filled=True,rounded=True )
+
+#from subprocess import call
+#call(['dot','-Tpng','tree.dot','-o','tree.png','Gdpi=600'])
